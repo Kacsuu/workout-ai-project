@@ -1,0 +1,14 @@
+a {
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .active {
+    font-weight: bold;
+  }
+  
