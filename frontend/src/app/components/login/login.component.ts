@@ -24,7 +24,7 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.credentials).subscribe({
-      next: () => this.router.navigate(['/dashboard']),
+      next: () => this.router.navigate(['/workouts']),
       error: (error) => this.errorMessage = error.error.message
     });
   }
