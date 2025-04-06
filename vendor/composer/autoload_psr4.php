@@ -36,7 +36,7 @@ return array(
     'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
     'Illuminate\\Console\\' => array($vendorDir . '/illuminate/console'),
     'Illuminate\\Bus\\' => array($vendorDir . '/illuminate/bus'),
-    'Fruitcake\\Cors\\' => array($vendorDir . '/barryvdh/laravel-cors/src', $vendorDir . '/fruitcake/php-cors/src'),
+    'Fruitcake\\Cors\\' => array($vendorDir . '/barryvdh/laravel-cors/src', $vendorDir . '/fruitcake/php-cors/src', $vendorDir . '/fruitcake/laravel-cors/src'),
     'Doctrine\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Inflector'),
     'Carbon\\Doctrine\\' => array($vendorDir . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),

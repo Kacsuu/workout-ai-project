@@ -17,8 +17,8 @@ class ComposerStaticInitdbe9afeafec34f01b2c5658aece81b8a
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        'ef65a1626449d89d0811cf9befce46f0' => __DIR__ . '/..' . '/illuminate/events/functions.php',
         '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
+        'ef65a1626449d89d0811cf9befce46f0' => __DIR__ . '/..' . '/illuminate/events/functions.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
     );
 
@@ -218,6 +218,7 @@ class ComposerStaticInitdbe9afeafec34f01b2c5658aece81b8a
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-cors/src',
             1 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
+            2 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
         ),
         'Doctrine\\Inflector\\' => 
         array (

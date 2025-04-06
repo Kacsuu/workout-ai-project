@@ -1,6 +1,7 @@
 {
     "require": {
         "barryvdh/laravel-cors": "^3.0",
-        "laravel/sanctum": "^3.3"
+        "laravel/sanctum": "^3.3",
+        "fruitcake/laravel-cors": "^3.0"
     }
 }

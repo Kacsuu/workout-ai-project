@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +10,31 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  private getCsrfToken(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true });
+  }
+
   register(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user);
+    return this.getCsrfToken().pipe(
+      switchMap(() =>
+        this.http.post(`${this.apiUrl}/register`, user, { withCredentials: true })
+      )
+    );
   }
 
   login(credentials: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
+    return this.getCsrfToken().pipe(
+      switchMap(() =>
+        this.http.post(`${this.apiUrl}/login`, credentials, { withCredentials: true })
+      )
+    );
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/logout`, {});
+    return this.getCsrfToken().pipe(
+      switchMap(() =>
+        this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true })
+      )
+    );
   }
 }

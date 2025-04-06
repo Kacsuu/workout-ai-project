@@ -1,9 +1,21 @@
-<form>
-  <label for="email">Email:</label>
-  <input type="email" id="email" [(ngModel)]="credentials.email" name="email" required>
+<div class="register-container">
+  <h2>Login</h2>
 
-  <label for="password">Password:</label>
-  <input type="password" id="password" [(ngModel)]="credentials.password" name="password" required>
+  <form (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="credentials.email" name="email" required>
+    </div>
 
-  <button type="submit">Login</button>
-</form>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" [(ngModel)]="credentials.password" name="password" required>
+    </div>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+</div>
