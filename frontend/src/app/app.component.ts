@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-root',
@@ -8,5 +9,9 @@ import { Router, RouterOutlet } from '@angular/router';
     imports: [RouterOutlet]
 })
 export class AppComponent {
-  title = 'WorkoutAI'
+  constructor(private titleService: Title) {}
+
+  ngOnInit() {
+    this.titleService.setTitle('WorkoutAI');
+  }
 }
