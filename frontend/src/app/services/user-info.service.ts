@@ -6,7 +6,7 @@ import { Observable, switchMap } from 'rxjs';
   providedIn: 'root'
 })
 export class UserInfoService {
-  private apiUrl = 'http://127.0.0.1:8000';
+  private apiUrl = 'http://localhost:8000';
 
   constructor(private http: HttpClient) {}
 
@@ -15,13 +15,13 @@ export class UserInfoService {
   }
 
   getUserInfo(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/user-info`, { withCredentials: true });
+    return this.http.get(`${this.apiUrl}/user-info`, { withCredentials: true });
   }
 
   saveUserInfo(data: any): Observable<any> {
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post(`${this.apiUrl}/api/user-info`, data, { withCredentials: true })
+        this.http.post(`${this.apiUrl}/user-info`, data, { withCredentials: true })
       )
     );
   }
@@ -29,7 +29,7 @@ export class UserInfoService {
   deleteAccount(): Observable<any> {
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.delete(`${this.apiUrl}/api/user`, { withCredentials: true })
+        this.http.delete(`${this.apiUrl}/user`, { withCredentials: true })
       )
     );
   }

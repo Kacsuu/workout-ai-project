@@ -1,0 +1,30 @@
+.logout-btn {
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .logout-btn:hover {
+    background-color: #e60000;
+  }
+  
+  .profile-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .profile-btn:hover {
+    background-color: #45a049;
+  }
+  

@@ -1,31 +1,28 @@
-<div class="register-container">
-    <h2>My Profile</h2>
-  
-    <form (ngSubmit)="save()">
-      <div class="form-group">
-        <label for="height">Height (cm)</label>
-        <input type="number" id="height" [(ngModel)]="userInfo.height" name="height">
-      </div>
-  
-      <div class="form-group">
-        <label for="weight">Weight (kg)</label>
-        <input type="number" id="weight" [(ngModel)]="userInfo.weight" name="weight">
-      </div>
-  
-      <div class="form-group">
-        <label for="birth_date">Birth Date</label>
-        <input type="date" id="birth_date" [(ngModel)]="userInfo.birth_date" name="birth_date">
-      </div>
-  
-      <div class="form-group">
-        <label for="usr_picture">Profile Picture URL</label>
-        <input type="text" id="usr_picture" [(ngModel)]="userInfo.usr_picture" name="usr_picture">
-      </div>
-  
-      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-  
-      <button type="submit">Save</button>
-      <button type="button" (click)="deleteAccount()" style="margin-top: 10px; background-color: red;">Delete Account</button>
-    </form>
-  </div>
-  
+<div class="profile-container">
+  <h2>My Profile</h2>
+
+  <form (ngSubmit)="save()" class="profile-form">
+    <div class="form-group">
+      <label for="height">Height (cm)</label>
+      <input type="number" id="height" [(ngModel)]="userInfo.height" name="height" />
+    </div>
+
+    <div class="form-group">
+      <label for="weight">Weight (kg)</label>
+      <input type="number" id="weight" [(ngModel)]="userInfo.weight" name="weight" />
+    </div>
+
+    <div class="form-group">
+      <label for="birth_date">Birth Date</label>
+      <input type="date" id="birth_date" [(ngModel)]="userInfo.birth_date" name="birth_date" />
+    </div>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <div class="button-group">
+      <button type="submit" class="save-button">Save</button>
+      <button type="button" class="delete-button" (click)="deleteAccount()">Delete Account</button>
+      <button type="button" class="back-button" routerLink="/workouts">Back to Workouts</button>
+    </div>
+  </form>
+</div>
