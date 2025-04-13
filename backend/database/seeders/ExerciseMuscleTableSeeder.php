@@ -1,0 +1,102 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class ExerciseMuscleTableSeeder extends Seeder
+{
+    public function run()
+    {
+        $exerciseMuscles = [
+            ['exercise_id' => 1, 'muscle_id' => 1],
+            ['exercise_id' => 1, 'muscle_id' => 2],
+            ['exercise_id' => 1, 'muscle_id' => 3],
+            ['exercise_id' => 2, 'muscle_id' => 2],
+            ['exercise_id' => 2, 'muscle_id' => 1],
+            ['exercise_id' => 3, 'muscle_id' => 4],
+            ['exercise_id' => 3, 'muscle_id' => 5],
+            ['exercise_id' => 4, 'muscle_id' => 1],
+            ['exercise_id' => 4, 'muscle_id' => 6],
+            ['exercise_id' => 5, 'muscle_id' => 1],
+            ['exercise_id' => 6, 'muscle_id' => 4],
+            ['exercise_id' => 6, 'muscle_id' => 5],
+            ['exercise_id' => 7, 'muscle_id' => 4],
+            ['exercise_id' => 7, 'muscle_id' => 5],
+            ['exercise_id' => 8, 'muscle_id' => 7],
+            ['exercise_id' => 9, 'muscle_id' => 4],
+            ['exercise_id' => 9, 'muscle_id' => 5],
+            ['exercise_id' => 10, 'muscle_id' => 3],
+            ['exercise_id' => 11, 'muscle_id' => 2],
+            ['exercise_id' => 11, 'muscle_id' => 6],
+            ['exercise_id' => 12, 'muscle_id' => 2],
+            ['exercise_id' => 12, 'muscle_id' => 1],
+            ['exercise_id' => 13, 'muscle_id' => 2],
+            ['exercise_id' => 13, 'muscle_id' => 1],
+            ['exercise_id' => 14, 'muscle_id' => 4],
+            ['exercise_id' => 15, 'muscle_id' => 4],
+            ['exercise_id' => 16, 'muscle_id' => 4],
+            ['exercise_id' => 16, 'muscle_id' => 5],
+            ['exercise_id' => 17, 'muscle_id' => 1],
+            ['exercise_id' => 17, 'muscle_id' => 4],
+            ['exercise_id' => 18, 'muscle_id' => 2],
+            ['exercise_id' => 18, 'muscle_id' => 1],
+            ['exercise_id' => 19, 'muscle_id' => 4],
+            ['exercise_id' => 19, 'muscle_id' => 5],
+            ['exercise_id' => 20, 'muscle_id' => 6],
+            ['exercise_id' => 21, 'muscle_id' => 2],
+            ['exercise_id' => 21, 'muscle_id' => 6],
+            ['exercise_id' => 22, 'muscle_id' => 2],
+            ['exercise_id' => 22, 'muscle_id' => 3],
+            ['exercise_id' => 23, 'muscle_id' => 7],
+            ['exercise_id' => 24, 'muscle_id' => 7],
+            ['exercise_id' => 25, 'muscle_id' => 2],
+            ['exercise_id' => 25, 'muscle_id' => 6],
+            ['exercise_id' => 26, 'muscle_id' => 3],
+            ['exercise_id' => 27, 'muscle_id' => 1],
+            ['exercise_id' => 28, 'muscle_id' => 4],
+            ['exercise_id' => 28, 'muscle_id' => 5],
+            ['exercise_id' => 29, 'muscle_id' => 4],
+            ['exercise_id' => 29, 'muscle_id' => 5],
+            ['exercise_id' => 30, 'muscle_id' => 4],
+            ['exercise_id' => 30, 'muscle_id' => 5],
+            ['exercise_id' => 31, 'muscle_id' => 3],
+            ['exercise_id' => 32, 'muscle_id' => 1],
+            ['exercise_id' => 33, 'muscle_id' => 1],
+            ['exercise_id' => 34, 'muscle_id' => 4],
+            ['exercise_id' => 34, 'muscle_id' => 5],
+            ['exercise_id' => 35, 'muscle_id' => 2],
+            ['exercise_id' => 35, 'muscle_id' => 6],
+            ['exercise_id' => 36, 'muscle_id' => 4],
+            ['exercise_id' => 36, 'muscle_id' => 5],
+            ['exercise_id' => 37, 'muscle_id' => 4],
+            ['exercise_id' => 37, 'muscle_id' => 5],
+            ['exercise_id' => 38, 'muscle_id' => 4],
+            ['exercise_id' => 39, 'muscle_id' => 4],
+            ['exercise_id' => 40, 'muscle_id' => 4],
+            ['exercise_id' => 41, 'muscle_id' => 4],
+            ['exercise_id' => 42, 'muscle_id' => 1],
+            ['exercise_id' => 43, 'muscle_id' => 2],
+            ['exercise_id' => 43, 'muscle_id' => 1],
+            ['exercise_id' => 44, 'muscle_id' => 4],
+            ['exercise_id' => 45, 'muscle_id' => 2],
+            ['exercise_id' => 45, 'muscle_id' => 6],
+            ['exercise_id' => 46, 'muscle_id' => 1],
+            ['exercise_id' => 47, 'muscle_id' => 4],
+            ['exercise_id' => 47, 'muscle_id' => 5],
+            ['exercise_id' => 48, 'muscle_id' => 1],
+            ['exercise_id' => 49, 'muscle_id' => 2],
+            ['exercise_id' => 49, 'muscle_id' => 6],
+            ['exercise_id' => 50, 'muscle_id' => 3],
+            ['exercise_id' => 51, 'muscle_id' => 7],
+            ['exercise_id' => 52, 'muscle_id' => 4],
+            ['exercise_id' => 53, 'muscle_id' => 7],
+            ['exercise_id' => 54, 'muscle_id' => 4],
+        ];
+
+        foreach ($exerciseMuscles as $entry) {
+            DB::table('exercise_muscle')->insert($entry);
+        }
+    }
+}

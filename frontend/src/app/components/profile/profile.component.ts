@@ -20,16 +20,22 @@ export class ProfileComponent implements OnInit {
   };
 
   errorMessage = '';
+  loading = true;
 
-  constructor(private userInfoService: UserInfoService, private router: Router) {}
+  constructor(
+    private userInfoService: UserInfoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userInfoService.getUserInfo().subscribe({
       next: (data) => {
         this.userInfo = data;
+        this.loading = false;
       },
-      error: () => {
-        // -
+      error: (err) => {
+        this.errorMessage = 'Failed to load user info.';
+        this.loading = false;
       }
     });
   }

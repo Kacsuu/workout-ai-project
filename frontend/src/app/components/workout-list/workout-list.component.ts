@@ -1,25 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-workout-list',
   templateUrl: './workout-list.component.html',
-  styleUrls: ['./workout-list.component.css']
+  styleUrls: ['./workout-list.component.css'],
+  standalone: true,
+  imports: [CommonModule],
 })
-export class WorkoutListComponent {
-  
-  constructor(private authService: AuthService, private router: Router) {}
+export class WorkoutListComponent implements OnInit {
+  workouts: any[] = [];
 
-  logout(): void {
-    this.authService.logout().subscribe(() => {
-      this.router.navigate(['/login']);
-    }, error => {
-      console.error('Logout hiba', error);
+  constructor(private http: HttpClient, private router: Router) {}
+
+  ngOnInit() {
+    this.http.get<any[]>('/workouts').subscribe(
+      (data) => {
+        this.workouts = data;
+      },
+      (error) => {
+        console.error('Error fetching workouts:', error);
+      }
+    );
+  }
+
+  viewWorkout(workoutId: number) {
+    this.router.navigate([`/workout-detail/${workoutId}`]);
+  }
+
+  deleteWorkout(workoutId: number) {
+    this.http.delete(`/workouts/${workoutId}`).subscribe({
+      next: () => {
+        this.workouts = this.workouts.filter(workout => workout.id !== workoutId);
+      },
+      error: (error) => {
+        console.error('Error deleting workout:', error);
+      }
     });
   }
 
-  goToProfile(): void {
+  navigateToAddWorkout() {
+    this.router.navigate(['/workouts/new']);
+  }
+
+  navigateToMyProfile() {
     this.router.navigate(['/profile']);
+  }
+
+  logout() {
+    localStorage.removeItem('userToken'); // vagy ami nálad a token/key
+    this.router.navigate(['/login']);
   }
 }

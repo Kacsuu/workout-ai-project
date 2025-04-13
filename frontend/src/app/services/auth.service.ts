@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -25,16 +26,22 @@ export class AuthService {
   login(credentials: any): Observable<any> {
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post(`${this.apiUrl}/login`, credentials, { withCredentials: true })
+        this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
+          switchMap(response => {
+            localStorage.setItem('auth_token', response.token);
+            return [response];
+          })
+        )
       )
     );
   }
-
-  logout(): Observable<any> {
-    return this.getCsrfToken().pipe(
-      switchMap(() =>
-        this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true })
-      )
-    );
-  }
+ 
+    logout(): Observable<any> {
+      const token = localStorage.getItem('auth_token');
+      const httpHeaders: HttpHeaders = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+      return this.http.post(`${this.apiUrl}/logout`, {}, { headers: httpHeaders });
+    }
+    
 }

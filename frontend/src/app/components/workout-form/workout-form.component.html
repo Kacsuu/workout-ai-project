@@ -1,1 +1,58 @@
-<p>workout-form works!</p>
+<div class="workout-form">
+    <h2>Create Workout</h2>
+  
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  
+    <form (ngSubmit)="saveWorkout()">
+      <div>
+        <label for="title">Workout Title</label>
+        <input type="text" id="title" [(ngModel)]="workout.title" name="title" required />
+      </div>
+  
+      <div>
+        <label for="start_time">Start Time</label>
+        <input type="datetime-local" id="start_time" [(ngModel)]="workout.start_time" name="start_time" required />
+      </div>
+  
+      <div>
+        <label for="finish_time">Finish Time</label>
+        <input type="datetime-local" id="finish_time" [(ngModel)]="workout.finish_time" name="finish_time" required />
+      </div>
+  
+      <div class="sets">
+        <h3>Sets</h3>
+        <div *ngFor="let set of workout.sets; let i = index">
+          <div>
+            <label for="exercise_{{i}}">Exercise</label>
+            <select [(ngModel)]="set.exercise_id" name="exercise_{{i}}" required>
+              <option *ngFor="let exercise of exercises" [value]="exercise.id">{{ exercise.title }}</option>
+            </select>
+          </div>
+  
+          <div>
+            <label for="set_number_{{i}}">Set Number</label>
+            <input type="number" [(ngModel)]="set.set_number" name="set_number_{{i}}" required />
+          </div>
+  
+          <div>
+            <label for="repetitions_{{i}}">Repetitions</label>
+            <input type="number" [(ngModel)]="set.repetitions" name="repetitions_{{i}}" required />
+          </div>
+  
+          <div>
+            <label for="weight_{{i}}">Weight</label>
+            <input type="number" [(ngModel)]="set.weight" name="weight_{{i}}" required />
+          </div>
+  
+          <button type="button" (click)="removeSet(i)">Remove Set</button>
+        </div>
+  
+        <button type="button" (click)="addSet()">Add Set</button>
+      </div>
+  
+      <button type="submit">Save Workout</button>
+    </form>
+    <button (click)="navigateBack()">Back to Workouts</button>
+  </div>
+  

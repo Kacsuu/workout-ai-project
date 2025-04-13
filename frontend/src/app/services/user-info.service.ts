@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +14,12 @@ export class UserInfoService {
 
   private getCsrfToken(): Observable<any> {
     return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true });
-  }
+  }  
 
   getUserInfo(): Observable<any> {
     return this.http.get(`${this.apiUrl}/user-info`, { withCredentials: true });
   }
-
+  
   saveUserInfo(data: any): Observable<any> {
     return this.getCsrfToken().pipe(
       switchMap(() =>
@@ -25,7 +27,7 @@ export class UserInfoService {
       )
     );
   }
-
+  
   deleteAccount(): Observable<any> {
     return this.getCsrfToken().pipe(
       switchMap(() =>
