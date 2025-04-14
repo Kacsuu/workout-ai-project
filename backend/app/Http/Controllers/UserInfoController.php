@@ -22,13 +22,14 @@ class UserInfoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'height' => 'required|numeric',
-            'weight' => 'required|numeric',
-            'birth_date' => 'required|date',
+            'user_id' => 'required|integer|exists:users,id',
+            'height' => 'nullable|numeric',
+            'weight' => 'nullable|numeric',
+            'birth_date' => 'nullable|date',
             'usr_picture' => 'nullable|string',
         ]);
 
-        $validated['user_id'] = Auth::id();
+        //$validated['user_id'] = $request->header('userId');
 
         $userInfo = UserInfo::create($validated);
 
@@ -44,6 +45,7 @@ class UserInfoController extends Controller
         }
 
         $validated = $request->validate([
+            'user_id' => 'required|integer|exists:users,id',
             'height' => 'nullable|numeric',
             'weight' => 'nullable|numeric',
             'birth_date' => 'nullable|date',
@@ -53,5 +55,49 @@ class UserInfoController extends Controller
         $userInfo->update($validated);
 
         return response()->json($userInfo);
+    }
+
+    public function getById($id)
+    {
+        $userInfo = UserInfo::where('user_id', $id)->first();
+
+        if (!$userInfo) {
+            return response()->json(['message' => 'User info not found'], 404);
+        }
+
+        return response()->json($userInfo);
+    }
+
+    public function updateById(Request $request, $id)
+    {
+        $userInfo = UserInfo::where('user_id', $id)->first();
+
+        if (!$userInfo) {
+            return response()->json(['message' => 'User info not found'], 404);
+        }
+
+        $validated = $request->validate([
+            'height' => 'nullable|numeric',
+            'weight' => 'nullable|numeric',
+            'birth_date' => 'nullable|date',
+            'usr_picture' => 'nullable|string',
+        ]);
+
+        $userInfo->update($validated);
+
+        return response()->json($userInfo);
+    }
+
+    public function deleteById($id)
+    {
+        $userInfo = UserInfo::where('user_id', $id)->first();
+
+        if (!$userInfo) {
+            return response()->json(['message' => 'User info not found'], 404);
+        }
+
+        $userInfo->delete();
+
+        return response()->json(['message' => 'User info deleted']);
     }
 }

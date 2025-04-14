@@ -6,15 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ExercisesService {
-  private apiUrl = '/api/exercises';
+  private apiUrl = 'http://localhost:8000/exercises';
 
   constructor(private http: HttpClient) {}
 
   getExercises(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
-  }
-
-  createExercise(exerciseData: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, exerciseData);
   }
 }

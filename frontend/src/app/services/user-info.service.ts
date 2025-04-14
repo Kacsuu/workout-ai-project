@@ -1,38 +1,35 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserInfoService {
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'http://localhost:8000/user-info';
 
   constructor(private http: HttpClient) {}
 
-  private getCsrfToken(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true });
-  }  
+  private getUserId(): string | null {
+    return localStorage.getItem('userId');
+  }
 
   getUserInfo(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/user-info`, { withCredentials: true });
+    const id = this.getUserId();
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
-  
-  saveUserInfo(data: any): Observable<any> {
-    return this.getCsrfToken().pipe(
-      switchMap(() =>
-        this.http.post(`${this.apiUrl}/user-info`, data, { withCredentials: true })
-      )
-    );
+
+  updateUserInfo(data: any): Observable<any> {
+    const id = this.getUserId();
+    return this.http.put(`${this.apiUrl}/${id}`, data);
   }
-  
-  deleteAccount(): Observable<any> {
-    return this.getCsrfToken().pipe(
-      switchMap(() =>
-        this.http.delete(`${this.apiUrl}/user`, { withCredentials: true })
-      )
-    );
+
+  deleteUserInfo(): Observable<any> {
+    const id = this.getUserId();
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  createUserInfo(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
   }
 }

@@ -4,25 +4,29 @@
   <form (ngSubmit)="save()" class="profile-form">
     <div class="form-group">
       <label for="height">Height (cm)</label>
-      <input type="number" id="height" [(ngModel)]="userInfo.height" name="height" />
+      <input type="number" id="height" [(ngModel)]="userInfo.height" name="height" required />
     </div>
 
     <div class="form-group">
       <label for="weight">Weight (kg)</label>
-      <input type="number" id="weight" [(ngModel)]="userInfo.weight" name="weight" />
+      <input type="number" id="weight" [(ngModel)]="userInfo.weight" name="weight" required />
     </div>
 
     <div class="form-group">
       <label for="birth_date">Birth Date</label>
-      <input type="date" id="birth_date" [(ngModel)]="userInfo.birth_date" name="birth_date" />
+      <input type="date" id="birth_date" [(ngModel)]="userInfo.birth_date" name="birth_date" required />
     </div>
 
     <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 
     <div class="button-group">
       <button type="submit" class="save-button">Save</button>
-      <button type="button" class="delete-button" (click)="deleteAccount()">Delete Account</button>
-      <button type="button" class="back-button" routerLink="/workouts">Back to Workouts</button>
+      <button type="button" class="delete-button" (click)="deleteAccount()">
+        Delete Account
+      </button>
+      <button type="button" class="back-button" [routerLink]="['/workouts']">
+        Back to Workouts
+      </button>
     </div>
   </form>
 </div>

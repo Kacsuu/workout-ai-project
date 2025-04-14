@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ExercisesService } from '../../services/exercises.service';
 
 @Component({
   selector: 'app-workout-form',
@@ -23,18 +24,17 @@ export class WorkoutFormComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private exercisesService: ExercisesService) {}
 
-  ngOnInit() {
-    this.http.get<Exercise[]>('/exercises').subscribe(
-      (data) => {
+  ngOnInit(): void {
+    this.exercisesService.getExercises().subscribe({
+      next: (data) => {
         this.exercises = data;
       },
-      (error) => {
-        console.error('Error fetching exercises:', error);
-        this.errorMessage = 'There was an error fetching exercises.';
+      error: (err) => {
+        console.error('Error fetching exercises', err);
       }
-    );
+    });
   }
 
   addSet() {
@@ -73,6 +73,5 @@ export class WorkoutFormComponent implements OnInit {
 
 interface Exercise {
   id: number;
-  title: string;
-  description?: string;
+  exercise_name: string;
 }

@@ -50,7 +50,17 @@ export class WorkoutListComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('userToken'); // vagy ami nálad a token/key
-    this.router.navigate(['/login']);
+    this.http.post('/logout', {}).subscribe({
+      next: () => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error('Logout failed', err);
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      }
+    });
   }
+  
 }
