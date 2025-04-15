@@ -11,21 +11,27 @@ use Illuminate\Support\Facades\DB;
 
 class WorkoutController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $workouts = Workout::with('sets')
-            ->where('user_id', Auth::id())
-            ->where('is_deleted', false)
-            ->get();
+    $userId = $request->query('user_id');
 
-        return response()->json($workouts);
+    if (!$userId) {
+        return response()->json(['error' => 'User ID is required'], 400);
+    }
+
+    $workouts = Workout::with('sets')
+        ->where('user_id', $userId)
+        ->where('is_deleted', false)
+        ->get();
+
+    return response()->json($workouts);
     }
 
     public function show($id)
     {
-        $workout = Workout::with('sets')
+        $workout = Workout::with('sets.exercise')
             ->where('id', $id)
-            ->where('user_id', Auth::id())
+            //->where('user_id', Auth::id())
             ->where('is_deleted', false)
             ->firstOrFail();
 
@@ -103,11 +109,21 @@ class WorkoutController extends Controller
     public function destroy($id)
     {
         $workout = Workout::where('id', $id)
-            ->where('user_id', Auth::id())
+            //->where('user_id', Auth::id())
             ->firstOrFail();
 
         $workout->update(['is_deleted' => true]);
 
         return response()->json(['message' => 'Workout deleted successfully']);
+    }
+
+    public function getByUserId($id)
+    {
+    $workouts = Workout::with('sets')
+        ->where('user_id', $id)
+        ->where('is_deleted', false)
+        ->get();
+
+    return response()->json($workouts);
     }
 }

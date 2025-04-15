@@ -25,6 +25,7 @@ Route::post('/workouts', [WorkoutController::class, 'store']);
 Route::get('/workouts/{id}', [WorkoutController::class, 'show']);
 Route::put('/workouts/{id}', [WorkoutController::class, 'update']);
 Route::delete('/workouts/{id}', [WorkoutController::class, 'destroy']);
+Route::get('/workouts/user/{id}', [WorkoutController::class, 'getByUserId']);
 
 Route::get('/user-info', [UserInfoController::class, 'show']);
 Route::post('/user-info', [UserInfoController::class, 'store']);

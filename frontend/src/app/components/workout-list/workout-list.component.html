@@ -1,18 +1,26 @@
-<div class="header">
-  <button (click)="navigateToAddWorkout()">Add Workout</button>
-  <button (click)="navigateToMyProfile()">My Profile</button>
-  <button (click)="logout()">Logout</button>
-</div>
+<div class="workout-list-container">
+  <h2>{{ name }}'s workouts</h2>
 
-<div class="workouts-list">
-  <ul>
-    <li *ngFor="let workout of workouts">
-      <div>
-        <h3>{{ workout.title }}</h3>
-        <button (click)="viewWorkout(workout.id)">View Details</button>
-        <button (click)="deleteWorkout(workout.id)">Delete</button>
-      </div>
-    </li>
-  </ul>
-  <div *ngIf="workouts.length === 0">No workouts found.</div>
+  <div *ngIf="workouts.length === 0" class="no-workouts">
+    <p>No workouts found.</p>
+  </div>
+
+  <div *ngFor="let workout of workouts" class="workout-item">
+    <div class="workout-info">
+      <h3>{{ workout.title }}</h3>
+      <p>Start Time: {{ workout.start_time | date: 'short' }}</p>
+      <p>Finish Time: {{ workout.finish_time | date: 'short' }}</p>
+    </div>
+
+    <div class="workout-actions">
+      <button class="view-button" (click)="viewWorkout(workout.id)">View</button>
+      <button class="delete-button" (click)="deleteWorkout(workout.id)">Delete</button>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button class="add-button" (click)="navigateToAddWorkout()">Add New Workout</button>
+    <button class="profile-button" (click)="navigateToMyProfile()">My Profile</button>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
 </div>

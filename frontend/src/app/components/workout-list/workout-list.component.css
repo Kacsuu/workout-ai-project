@@ -1,30 +1,123 @@
-.logout-btn {
-    padding: 10px 20px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-  }
-  
-  .logout-btn:hover {
-    background-color: #e60000;
-  }
-  
-  .profile-btn {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-  }
-  
-  .profile-btn:hover {
-    background-color: #45a049;
-  }
-  
+.workout-list-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.workout-list-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.workout-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.workout-info h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.workout-info p {
+  font-size: 14px;
+  color: #555;
+}
+
+.workout-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.workout-actions button {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.no-workouts p {
+  font-size: 16px;
+  color: #555;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.add-button,
+.profile-button,
+.logout-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 30%;
+}
+
+.add-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+.add-button:hover {
+  background-color: #218838;
+}
+
+.profile-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.profile-button:hover {
+  background-color: #0069d9;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.logout-button:hover {
+  background-color: #e53935;
+}

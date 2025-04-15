@@ -1,0 +1,22 @@
+<div *ngIf="workout" class="workout-details-container">
+    <button (click)="goBack()" class="back-btn">Back to workouts</button>
+  
+    <h2>Workout Details</h2>
+  
+    <div class="workout-info">
+      <p><strong>Title:</strong> {{ workout.title }}</p>
+      <p><strong>Start Time:</strong> {{ workout.start_time | date:'short' }}</p>
+      <p><strong>Finish Time:</strong> {{ workout.finish_time | date:'short' }}</p>
+    </div>
+  
+    <h3>Sets</h3>
+    <div *ngFor="let set of workout.sets" class="set-item">
+      <div class="set">
+        <p><strong>Exercise:</strong> {{ set.exercise.exercise_name }}</p>
+        <p><strong>Set Number:</strong> {{ set.set_number }}</p>
+        <p><strong>Repetitions:</strong> {{ set.repetitions }}</p>
+        <p><strong>Weight:</strong> {{ set.weight }} kg</p>
+      </div>
+    </div>
+  </div>
+  

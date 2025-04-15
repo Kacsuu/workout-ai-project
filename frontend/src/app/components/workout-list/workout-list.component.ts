@@ -12,11 +12,15 @@ import { CommonModule } from '@angular/common';
 })
 export class WorkoutListComponent implements OnInit {
   workouts: any[] = [];
+  name: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.http.get<any[]>('/workouts').subscribe(
+    this.name = localStorage.getItem('name')|| 'User';
+    const userId = localStorage.getItem('userId');
+
+    this.http.get<any[]>(`http://localhost:8000/workouts/user/${userId}`).subscribe(
       (data) => {
         this.workouts = data;
       },
@@ -27,11 +31,11 @@ export class WorkoutListComponent implements OnInit {
   }
 
   viewWorkout(workoutId: number) {
-    this.router.navigate([`/workout-detail/${workoutId}`]);
+    this.router.navigate([`/workout/${workoutId}`]);
   }
 
   deleteWorkout(workoutId: number) {
-    this.http.delete(`/workouts/${workoutId}`).subscribe({
+    this.http.delete(`http://localhost:8000/workouts/${workoutId}`).subscribe({
       next: () => {
         this.workouts = this.workouts.filter(workout => workout.id !== workoutId);
       },

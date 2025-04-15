@@ -71,7 +71,6 @@ export class WorkoutFormComponent implements OnInit {
   navigateBack() {
     this.router.navigate(['/workouts']);
   }
-  
 }
 
 interface Exercise {

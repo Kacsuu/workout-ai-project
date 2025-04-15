@@ -36,6 +36,7 @@ export class AuthService {
             }
             if (response.user?.id) {
               localStorage.setItem('userId', response.user.id);
+              localStorage.setItem('name', response.user.name);
             }
 
             return [response];

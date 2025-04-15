@@ -58,7 +58,6 @@
   position: relative;
 }
 
-/* Remove Set Button - red */
 .sets > div button {
   background-color: #dc3545;
   display: block;
@@ -76,13 +75,12 @@
   background-color: #c82333;
 }
 
-/* Add Set Button - Green & Larger */
 .add-set-button {
   background-color: #28a745;
   color: white;
-  font-size: 16px;  /* Larger font size */
-  padding: 12px 20px;  /* Larger padding */
-  margin: 16px auto 0;  /* Adds spacing above */
+  font-size: 16px;
+  padding: 12px 20px;
+  margin: 16px auto 0;
   border-radius: 6px;
   border: none;
   width: 100%;
@@ -94,7 +92,6 @@
   background-color: #218838;
 }
 
-/* Button Group */
 .button-group {
   display: flex;
   justify-content: center;
@@ -113,7 +110,6 @@
   width: 100%;
 }
 
-/* Save Workout Button - Green */
 .save-button {
   background-color: #28a745;
   color: white;
@@ -123,7 +119,6 @@
   background-color: #218838;
 }
 
-/* Back to Workouts Button - Blue */
 .back-button {
   background-color: #007bff;
   color: white;
