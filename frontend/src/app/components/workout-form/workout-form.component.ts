@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ExercisesService } from '../../services/exercises.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-workout-form',
@@ -14,6 +15,7 @@ import { ExercisesService } from '../../services/exercises.service';
 })
 export class WorkoutFormComponent implements OnInit {
   workout = {
+    user_id: '',
     title: '',
     start_time: '',
     finish_time: '',
@@ -24,7 +26,7 @@ export class WorkoutFormComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
 
-  constructor(private http: HttpClient, private router: Router, private exercisesService: ExercisesService) {}
+  constructor(private http: HttpClient, private router: Router, private exercisesService: ExercisesService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.exercisesService.getExercises().subscribe({
@@ -47,16 +49,17 @@ export class WorkoutFormComponent implements OnInit {
 
   saveWorkout() {
     const workoutData = {
+      user_id: this.authService.getUserId(),
       title: this.workout.title,
       start_time: this.workout.start_time,
       finish_time: this.workout.finish_time,
       sets: this.workout.sets
     };
 
-    this.http.post('/workouts', workoutData).subscribe({
+    this.http.post('http://localhost:8000/workouts', workoutData).subscribe({
       next: (response) => {
         this.successMessage = 'Workout saved successfully!';
-        this.router.navigate(['/workout-list']);
+        this.router.navigate(['/workouts']);
       },
       error: (error) => {
         console.error('Error saving workout:', error);

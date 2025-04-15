@@ -9,6 +9,10 @@ class WorkoutSet extends Model
 {
     use HasFactory;
 
+    protected $table = 'workouts_set';
+
+    public $timestamps = false;
+
     protected $fillable = ['workout_id', 'set_id', 'number', 'is_deleted'];
 
     public function workout()

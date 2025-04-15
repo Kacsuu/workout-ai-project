@@ -9,6 +9,8 @@ class Workout extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = ['user_id', 'title', 'start_time', 'finish_time', 'is_deleted'];
 
     public function user()
@@ -18,7 +20,10 @@ class Workout extends Model
 
     public function sets()
     {
-        return $this->hasMany(WorkoutSet::class, 'workout_id');
+        return $this->belongsToMany(Set::class, 'workouts_set', 'workout_id', 'set_id')
+            ->withPivot('number')
+            ->wherePivot('is_deleted', false)
+            ->where('sets.is_deleted', false);
     }
 }
 
