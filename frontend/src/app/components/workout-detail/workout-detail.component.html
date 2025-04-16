@@ -13,10 +13,29 @@
     <div *ngFor="let set of workout.sets" class="set-item">
       <div class="set">
         <p><strong>Exercise:</strong> {{ set.exercise.exercise_name }}</p>
-        <p><strong>Set Number:</strong> {{ set.set_number }}</p>
+        <p><strong>Number of sets:</strong> {{ set.set_number }}</p>
         <p><strong>Repetitions:</strong> {{ set.repetitions }}</p>
         <p><strong>Weight:</strong> {{ set.weight }} kg</p>
       </div>
+    </div>
+  </div>
+
+  <div class="ai-section">
+    <button class="ai-button" (click)="askGemini()">
+      💡 Analyze Workout with AI
+    </button>
+  
+    <div *ngIf="loadingAI" class="ai-loading">
+      🔄 Sending request to AI...
+    </div>
+  
+    <div *ngIf="geminiResponse" class="ai-response">
+      <h3>📋 AI Recommendation</h3>
+      <p>{{ geminiResponse }}</p>
+    </div>
+  
+    <div *ngIf="geminiError" class="ai-error">
+      ⚠️ Something went wrong: {{ geminiError }}
     </div>
   </div>
   
