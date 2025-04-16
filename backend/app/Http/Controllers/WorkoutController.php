@@ -31,7 +31,6 @@ class WorkoutController extends Controller
     {
         $workout = Workout::with('sets.exercise')
             ->where('id', $id)
-            //->where('user_id', Auth::id())
             ->where('is_deleted', false)
             ->firstOrFail();
 
